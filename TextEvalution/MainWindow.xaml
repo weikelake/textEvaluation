@@ -1,0 +1,55 @@
+﻿<Window x:Class="TextEvalution.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEvalution"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="420" Width="530" MinWidth="530" MinHeight="420">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <Label DockPanel.Dock="Top" Content="Введите текст:" Margin="5 0 5 0"/>
+            <TextBox x:Name="textBox"  TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=Text}" Margin="5 0 5 5" VerticalScrollBarVisibility="Auto" />
+        </DockPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Label DockPanel.Dock="Top" Content="Выберите части речи:" Margin="5 0 5 0"/>
+            <CheckBox Content="Выбрать всё" FontWeight="Bold" IsChecked="{Binding Path=bAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Существительное" IsChecked="{Binding Path=bNoun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Наречие" IsChecked="{Binding Path=bAdv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Глагол" IsChecked="{Binding Path=bVerb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Причастие" IsChecked="{Binding Path=bParticiple, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Деепричастие" IsChecked="{Binding Path=bGerund, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Имя прилагательное" IsChecked="{Binding Path=bAdj, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Имя числительное" IsChecked="{Binding Path=bNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Местоимение" IsChecked="{Binding Path=bPronoun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Служебная часть речи" IsChecked="{Binding Path=bAux, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <CheckBox Content="Не определено" IsChecked="{Binding Path=bRemain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Label  Content="Выберите файл для чтения"/>
+            <WrapPanel>
+                <TextBox Width="245"  Text="{Binding Path= PathToReadFile, Mode=OneWay}" IsReadOnly="True" Margin=" 5 0 10 0"/>
+                <Button Content="Обзор..." Width="80" Click="btnClickReadPath"/>
+            </WrapPanel>
+            <Label  Content="Выберите файл для записи"/>
+            <WrapPanel>
+                <TextBox Width="245"  Text="{Binding Path= PathToWriteFile, Mode=OneWay}" IsReadOnly="True" Margin=" 5 0 10 0"/>
+                <Button Content="Обзор..." Width="80" Click="btnClickWritePath"/>
+            </WrapPanel>
+            <Label Content="Кодировка для файлов записи и чтения должна быть UTF-8"/>
+        </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Button Content="Анализ" VerticalAlignment="Bottom" Margin="5" Click="BtnClickEvaluation"/>
+
+        </Grid>
+    </Grid>
+</Window>
